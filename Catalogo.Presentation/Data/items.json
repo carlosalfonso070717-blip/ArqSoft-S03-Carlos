@@ -1,0 +1,29 @@
+[
+  {
+    "Id": 1,
+    "Titulo": "Devil May Cry",
+    "Genero": "Hack and Slash",
+    "Consola": "PlayStation 2",
+    "Ano": 2001,
+    "Descripcion": "Dante, cazador de demonios, enfrenta a Mundus.",
+    "ImagenUrl": ""
+  },
+  {
+    "Id": 2,
+    "Titulo": "Mario Bros",
+    "Genero": "Plataformas",
+    "Consola": "NES",
+    "Ano": 1990,
+    "Descripcion": "plomero salva a princesa",
+    "ImagenUrl": null
+  },
+  {
+    "Id": 3,
+    "Titulo": "Warzone",
+    "Genero": "Acci\u00F3n",
+    "Consola": "PC",
+    "Ano": 2020,
+    "Descripcion": "Juego de tiros",
+    "ImagenUrl": "https://www.nvidia.com/content/dam/en-zz/Solutions/GeForce/campaigns/frames-win-games/cod-warzone/warzone-og-100.jpg"
+  }
+]

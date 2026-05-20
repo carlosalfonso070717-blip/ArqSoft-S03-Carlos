@@ -1,0 +1,81 @@
+﻿@model List<CatalogoApp.Domain.Models.Item>
+
+<div class="catalog-header">
+    <h1 data-translate="catalogTitle">MI CATÁLOGO</h1>
+    <a asp-action="Agregar" class="btn btn-add-game">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+        </svg>
+        <span data-translate="addGame">Agregar Videojuego</span>
+    </a>
+</div>
+
+<!-- Filtro por género -->
+<div class="genre-filter">
+    <div class="filter-label">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+            <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
+        </svg>
+        <span data-translate="filterLabel">FILTRAR:</span>
+    </div>
+    <div class="filter-buttons">
+        <a asp-action="Index" class="filter-btn" data-translate="filterAll">Todos</a>
+        @foreach (var gen in ViewBag.Generos as List<string>)
+        {
+            <a asp-action="Index" asp-route-genero="@gen" class="filter-btn">@gen</a>
+        }
+    </div>
+</div>
+
+<!-- Grid de juegos -->
+<div class="games-grid">
+    @foreach (var item in Model)
+    {
+        <div class="game-card">
+            @if (!string.IsNullOrEmpty(item.ImagenUrl))
+            {
+                <div class="game-card-image">
+                    <img src="@item.ImagenUrl" alt="@item.Titulo" />
+                    <div class="game-card-overlay">
+                        <span class="game-year-overlay">@item.Ano</span>
+                    </div>
+                </div>
+            }
+            <div class="game-card-header">
+                <span class="game-genre badge bg-danger">@item.Genero</span>
+            </div>
+            <div class="game-card-body">
+                <h3 class="game-title">@item.Titulo</h3>
+                @if (!string.IsNullOrEmpty(item.Consola))
+                {
+                    <p class="game-console">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-tv" viewBox="0 0 16 16">
+                            <path d="M2.5 13.5A.5.5 0 0 1 3 13h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5M13.991 3l.024.001a1.5 1.5 0 0 1 .538.143.76.76 0 0 1 .302.254c.067.1.145.277.145.602v5.991l-.001.024a1.5 1.5 0 0 1-.143.538.76.76 0 0 1-.254.302c-.1.067-.277.145-.602.145H2.009l-.024-.001a1.5 1.5 0 0 1-.538-.143.76.76 0 0 1-.302-.254C1.078 10.502 1 10.325 1 10V4.009l.001-.024a1.5 1.5 0 0 1 .143-.538.76.76 0 0 1 .254-.302C1.498 3.078 1.675 3 2 3zM14 2H2C0 2 0 4 0 4v6c0 2 2 2 2 2h12c2 0 2-2 2-2V4c0-2-2-2-2-2"/>
+                        </svg>
+                        @item.Consola
+                    </p>
+                }
+            </div>
+            <div class="game-card-footer">
+                <a asp-action="Detalle" asp-route-id="@item.Id" class="btn btn-view-details">
+                    <span data-translate="viewDetails">Ver Detalles</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    }
+</div>
+
+@if (Model.Count == 0)
+{
+    <div class="empty-state">
+        <div class="empty-icon">🎮</div>
+        <h3 data-translate="noGames">No hay juegos en tu catálogo</h3>
+        <p data-translate="noGamesMessage">Comienza agregando tu primer videojuego a la colección</p>
+        <a asp-action="Agregar" class="btn btn-hero-primary">
+            <span data-translate="addFirstGame">Agregar Primer Juego</span>
+        </a>
+    </div>
+}
