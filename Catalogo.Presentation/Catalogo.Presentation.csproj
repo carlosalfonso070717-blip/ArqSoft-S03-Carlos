@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="Data\items.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

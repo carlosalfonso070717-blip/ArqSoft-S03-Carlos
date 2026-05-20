@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CatalogoApp.Domain.Models
@@ -13,5 +14,12 @@ namespace CatalogoApp.Domain.Models
         public int Ano { get; set; }
         public string Descripcion { get; set; } = string.Empty;
         public string ImagenUrl { get; set; } = string.Empty;
+        public List<Review> Reviews { get; set; } = new List<Review>();
+
+        // Propiedades calculadas
+        public double PromedioEstrellas => Reviews.Count > 0 
+            ? Reviews.Average(r => r.Estrellas) 
+            : 0;
+        public int TotalReviews => Reviews.Count;
     }
 }

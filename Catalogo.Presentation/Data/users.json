@@ -1,0 +1,30 @@
+[
+  {
+    "Id": 1,
+    "Username": "carlos123",
+    "Email": "carlos@example.com",
+    "Password": "password123",
+    "FechaRegistro": "2024-01-15T10:30:00"
+  },
+  {
+    "Id": 2,
+    "Username": "maria_gamer",
+    "Email": "maria@example.com",
+    "Password": "maria456",
+    "FechaRegistro": "2024-02-20T14:45:00"
+  },
+  {
+    "Id": 3,
+    "Username": "juan_pro",
+    "Email": "juan@example.com",
+    "Password": "juan789",
+    "FechaRegistro": "2024-03-10T09:15:00"
+  },
+  {
+    "Id": 4,
+    "Username": "CarlosPro",
+    "Email": "carlosalfonso070717@gmail.com",
+    "Password": "Carlito17.",
+    "FechaRegistro": "2026-05-20T08:43:06.8697765-06:00"
+  }
+]

@@ -8,10 +8,12 @@ namespace CatalogoApp.Infrastructure.Repositories
     {
         // Ruta del archivo JSON, relativa a donde corre la app
         private readonly string _filePath;
+        private readonly IReviewRepository _reviewRepository;
 
-        public JsonItemRepository(string filePath)
+        public JsonItemRepository(string filePath, IReviewRepository reviewRepository = null)
         {
             _filePath = filePath;
+            _reviewRepository = reviewRepository;
 
             // Si la carpeta no existe, crearla
             var carpeta = Path.GetDirectoryName(_filePath);
@@ -26,14 +28,33 @@ namespace CatalogoApp.Infrastructure.Repositories
                 return new List<Item>();
 
             var json = File.ReadAllText(_filePath);
-            return JsonSerializer.Deserialize<List<Item>>(json)
+            var items = JsonSerializer.Deserialize<List<Item>>(json)
                    ?? new List<Item>();
+
+            // Cargar reviews para cada item si el repositorio está disponible
+            if (_reviewRepository != null)
+            {
+                foreach (var item in items)
+                {
+                    item.Reviews = _reviewRepository.GetByItemId(item.Id);
+                }
+            }
+
+            return items;
         }
 
         // Busca un item por Id
         public Item? ObtenerPorId(int id)
         {
-            return ObtenerTodos().FirstOrDefault(i => i.Id == id);
+            var item = ObtenerTodos().FirstOrDefault(i => i.Id == id);
+
+            // Cargar reviews para el item si el repositorio está disponible
+            if (item != null && _reviewRepository != null)
+            {
+                item.Reviews = _reviewRepository.GetByItemId(item.Id);
+            }
+
+            return item;
         }
 
         // Agrega un item y guarda la lista completa en el JSON
