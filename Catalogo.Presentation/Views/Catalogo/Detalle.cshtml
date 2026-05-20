@@ -183,6 +183,210 @@
 </div>
 
 <style>
+    /* Contenedor principal de la página de detalles */
+    .detail-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px 30px;
+    }
+
+    /* Header con botón de volver */
+    .detail-header {
+        margin-bottom: 30px;
+    }
+
+    .btn-back {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        background: white;
+        color: #dc2626;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-back:hover {
+        background: #dc2626;
+        color: white;
+        transform: translateX(-5px);
+        box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+
+    /* Tarjeta principal del juego */
+    .detail-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .detail-layout {
+        display: grid;
+        grid-template-columns: 400px 1fr;
+        gap: 40px;
+        padding: 40px;
+    }
+
+    /* Contenedor de imagen */
+    .detail-image-container {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .detail-image {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .detail-image-container:hover .detail-image {
+        transform: scale(1.05);
+    }
+
+    /* Contenido del juego */
+    .detail-content {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .detail-title-section {
+        display: flex;
+        align-items: baseline;
+        gap: 15px;
+        margin-bottom: 10px;
+    }
+
+    .detail-title {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: #1f2937;
+        margin: 0;
+        line-height: 1.2;
+    }
+
+    .detail-year {
+        font-size: 1.3rem;
+        color: #6b7280;
+        font-weight: 600;
+    }
+
+    /* Metadata items */
+    .detail-metadata {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .metadata-item {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding: 15px;
+        background: #f9fafb;
+        border-radius: 10px;
+        border-left: 4px solid #dc2626;
+    }
+
+    .metadata-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 45px;
+        height: 45px;
+        background: linear-gradient(135deg, #dc2626, #991b1b);
+        border-radius: 10px;
+        color: white;
+        flex-shrink: 0;
+    }
+
+    .metadata-content {
+        flex: 1;
+    }
+
+    .metadata-label {
+        font-size: 0.875rem;
+        color: #6b7280;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .metadata-value {
+        font-size: 1.1rem;
+        color: #1f2937;
+        font-weight: 700;
+    }
+
+    /* Descripción */
+    .detail-description {
+        margin-top: 10px;
+        padding: 25px;
+        background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(153, 27, 27, 0.05));
+        border-radius: 12px;
+        border: 2px solid rgba(220, 38, 38, 0.1);
+    }
+
+    .description-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #dc2626;
+        margin-bottom: 15px;
+    }
+
+    .description-text {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: #4b5563;
+        margin: 0;
+    }
+
+    /* Responsive */
+    @@media (max-width: 992px) {
+        .detail-layout {
+            grid-template-columns: 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .detail-image-container {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .detail-title {
+            font-size: 2rem;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .detail-page {
+            padding: 15px;
+        }
+
+        .detail-layout {
+            padding: 20px;
+        }
+
+        .detail-title {
+            font-size: 1.75rem;
+        }
+
+        .metadata-item {
+            flex-direction: column;
+            text-align: center;
+        }
+    }
+
     .rating-summary {
         display: flex;
         align-items: center;
@@ -213,8 +417,9 @@
     }
 
     .reviews-section {
-        margin-top: 40px;
-        padding: 30px;
+        max-width: 1200px;
+        margin: 40px auto 0;
+        padding: 40px;
         background: white;
         border-radius: 15px;
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);

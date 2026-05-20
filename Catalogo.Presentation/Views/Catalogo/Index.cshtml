@@ -1,8 +1,8 @@
 ﻿@model List<CatalogoApp.Domain.Models.Item>
 
-<div class="catalog-header">
-    <h1 data-translate="catalogTitle">MI CATÁLOGO</h1>
-    <a asp-action="Agregar" class="btn btn-add-game">
+<div class="catalog-header glow-effect">
+    <h1 data-translate="catalogTitle" class="neon-text">MI CATÁLOGO</h1>
+    <a asp-action="Agregar" class="btn btn-add-game glow-effect">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-plus-lg" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
         </svg>
@@ -11,9 +11,9 @@
 </div>
 
 <!-- Filtro por género -->
-<div class="genre-filter">
+<div class="genre-filter glass-effect">
     <div class="filter-label">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-funnel controller-icon" viewBox="0 0 16 16">
             <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5zm1 .5v1.308l4.372 4.858A.5.5 0 0 1 7 8.5v5.306l2-.666V8.5a.5.5 0 0 1 .128-.334L13.5 3.308V2z"/>
         </svg>
         <span data-translate="filterLabel">FILTRAR:</span>
@@ -31,7 +31,7 @@
 <div class="games-grid">
     @foreach (var item in Model)
     {
-        <div class="game-card">
+        <div class="game-card holographic-card pixel-border hover-lift">
             @if (!string.IsNullOrEmpty(item.ImagenUrl))
             {
                 <div class="game-card-image">
@@ -42,7 +42,7 @@
                 </div>
             }
             <div class="game-card-header">
-                <span class="game-genre badge bg-danger">@item.Genero</span>
+                <span class="game-genre badge bg-danger glow-effect">@item.Genero</span>
             </div>
             <div class="game-card-body">
                 <h3 class="game-title">@item.Titulo</h3>
@@ -57,7 +57,7 @@
                 }
             </div>
             <div class="game-card-footer">
-                <a asp-action="Detalle" asp-route-id="@item.Id" class="btn btn-view-details">
+                <a asp-action="Detalle" asp-route-id="@item.Id" class="btn btn-view-details glow-effect">
                     <span data-translate="viewDetails">Ver Detalles</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8"/>

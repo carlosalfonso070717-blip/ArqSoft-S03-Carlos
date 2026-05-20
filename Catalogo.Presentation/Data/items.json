@@ -6,7 +6,29 @@
     "Consola": "PlayStation 2",
     "Ano": 2001,
     "Descripcion": "Dante, cazador de demonios, enfrenta a Mundus.",
-    "ImagenUrl": ""
+    "ImagenUrl": "",
+    "Reviews": [
+      {
+        "Id": 2,
+        "ItemId": 1,
+        "UserId": 2,
+        "Username": "maria_gamer",
+        "Estrellas": 4,
+        "Comentario": "Muy buen juego de acci\u00F3n. Los combos son espectaculares, aunque a veces la c\u00E1mara puede ser un problema.",
+        "FechaReview": "2024-06-12T20:15:00"
+      },
+      {
+        "Id": 1,
+        "ItemId": 1,
+        "UserId": 1,
+        "Username": "carlos123",
+        "Estrellas": 5,
+        "Comentario": "\u00A1Incre\u00EDble juego! La jugabilidad es muy fluida y la historia es cautivadora. Dante es un personaje \u00E9pico.",
+        "FechaReview": "2024-06-10T18:30:00"
+      }
+    ],
+    "PromedioEstrellas": 4.5,
+    "TotalReviews": 2
   },
   {
     "Id": 2,
@@ -15,7 +37,29 @@
     "Consola": "NES",
     "Ano": 1990,
     "Descripcion": "plomero salva a princesa",
-    "ImagenUrl": null
+    "ImagenUrl": null,
+    "Reviews": [
+      {
+        "Id": 4,
+        "ItemId": 2,
+        "UserId": 3,
+        "Username": "juan_pro",
+        "Estrellas": 4,
+        "Comentario": "El juego que inici\u00F3 todo. Los controles son precisos y los niveles est\u00E1n muy bien dise\u00F1ados.",
+        "FechaReview": "2024-06-18T11:30:00"
+      },
+      {
+        "Id": 3,
+        "ItemId": 2,
+        "UserId": 1,
+        "Username": "carlos123",
+        "Estrellas": 5,
+        "Comentario": "Un cl\u00E1sico atemporal. Me trae muchos recuerdos de mi infancia. Simple pero muy divertido.",
+        "FechaReview": "2024-06-15T16:00:00"
+      }
+    ],
+    "PromedioEstrellas": 4.5,
+    "TotalReviews": 2
   },
   {
     "Id": 3,
@@ -24,6 +68,40 @@
     "Consola": "PC",
     "Ano": 2020,
     "Descripcion": "Juego de tiros",
-    "ImagenUrl": "https://www.nvidia.com/content/dam/en-zz/Solutions/GeForce/campaigns/frames-win-games/cod-warzone/warzone-og-100.jpg"
+    "ImagenUrl": "https://www.nvidia.com/content/dam/en-zz/Solutions/GeForce/campaigns/frames-win-games/cod-warzone/warzone-og-100.jpg",
+    "Reviews": [
+      {
+        "Id": 6,
+        "ItemId": 3,
+        "UserId": 3,
+        "Username": "juan_pro",
+        "Estrellas": 4,
+        "Comentario": "Muy adictivo, especialmente jugando con amigos. Las actualizaciones constantes mantienen el juego fresco.",
+        "FechaReview": "2024-06-22T19:00:00"
+      },
+      {
+        "Id": 5,
+        "ItemId": 3,
+        "UserId": 2,
+        "Username": "maria_gamer",
+        "Estrellas": 3,
+        "Comentario": "Es entretenido pero hay mucho campeo. Los gr\u00E1ficos son buenos pero necesita mejor balance.",
+        "FechaReview": "2024-06-20T22:45:00"
+      }
+    ],
+    "PromedioEstrellas": 3.5,
+    "TotalReviews": 2
+  },
+  {
+    "Id": 4,
+    "Titulo": "Fishing Planet",
+    "Genero": "Aventura",
+    "Consola": "PC",
+    "Ano": 2021,
+    "Descripcion": "Juego de pesca muy realista",
+    "ImagenUrl": "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQwN1CIon404Wx2i5PLhmJu-B5hfKvOo3mLXP9UZNJ-gDZ_GZO9",
+    "Reviews": [],
+    "PromedioEstrellas": 0,
+    "TotalReviews": 0
   }
 ]
