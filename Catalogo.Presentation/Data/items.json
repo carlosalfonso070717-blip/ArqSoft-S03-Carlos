@@ -103,5 +103,17 @@
     "Reviews": [],
     "PromedioEstrellas": 0,
     "TotalReviews": 0
+  },
+  {
+    "Id": 5,
+    "Titulo": "Zelda",
+    "Genero": "RPG",
+    "Consola": "Nintendo Switch",
+    "Ano": 2000,
+    "Descripcion": "Mata a los malos",
+    "ImagenUrl": null,
+    "Reviews": [],
+    "PromedioEstrellas": 0,
+    "TotalReviews": 0
   }
 ]

@@ -39,6 +39,97 @@ body {
   overflow-x: hidden;
 }
 
+/* ========================================
+   ELIMINAR OUTLINE/FOCUS BORDERS
+   ======================================== */
+/* Reset global de outline */
+*:focus,
+*:active,
+*:focus-visible {
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-style: none !important;
+  outline-color: transparent !important;
+}
+
+/* Específico para botones */
+button,
+button:focus,
+button:active,
+button:hover,
+.btn,
+.btn:focus,
+.btn:active,
+.btn:hover,
+.btn-primary:focus,
+.btn-danger:focus,
+.btn-success:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none;
+}
+
+/* Específico para links */
+a,
+a:focus,
+a:active,
+a:hover,
+a:visited {
+  outline: none !important;
+  text-decoration: none;
+}
+
+/* Inputs y formularios */
+input:focus,
+input:active,
+select:focus,
+select:active,
+textarea:focus,
+textarea:active,
+.form-control:focus,
+.form-control:active {
+  outline: none !important;
+  box-shadow: 0 0 0 0.2rem rgba(220, 38, 38, 0.15) !important;
+  border-color: #dc2626 !important;
+}
+
+/* SVG y otros elementos */
+svg:focus,
+div:focus,
+span:focus {
+  outline: none !important;
+}
+
+/* Bootstrap overrides */
+.btn:not(:disabled):not(.disabled):active:focus,
+.btn:not(:disabled):not(.disabled).active:focus {
+  box-shadow: none !important;
+}
+
+/* Eliminar tap highlight en móviles */
+* {
+  -webkit-tap-highlight-color: transparent !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Permitir selección de texto solo donde es necesario */
+p,
+h1, h2, h3, h4, h5, h6,
+span,
+label,
+input,
+textarea {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
 /* Video Background para el body */
 body::before {
   content: '';
@@ -342,8 +433,8 @@ body::before {
 }
 
 .game-card:hover {
-  transform: translateY(-12px) scale(1.02);
-  box-shadow: 0 20px 50px rgba(220, 38, 38, 0.25);
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 15px 35px rgba(220, 38, 38, 0.2);
   border-color: rgba(220, 38, 38, 0.3);
 }
 
@@ -362,11 +453,11 @@ body::before {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .game-card:hover .game-card-image img {
-  transform: scale(1.15) rotate(2deg);
+  transform: scale(1.05);
 }
 
 .game-card-overlay {
@@ -449,11 +540,21 @@ body::before {
   text-transform: uppercase;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
+  border: none;
+  outline: none !important;
+}
+
+.btn-view-details:focus,
+.btn-view-details:active,
+.btn-view-details:hover {
+  outline: none !important;
+  box-shadow: none !important;
+  color: white;
 }
 
 .btn-view-details:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 8px 20px rgba(220, 38, 38, 0.4) !important;
   color: white;
 }
 

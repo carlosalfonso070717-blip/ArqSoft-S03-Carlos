@@ -10,6 +10,14 @@ document.addEventListener('DOMContentLoaded', function() {
     initCardAnimations();
     initTypingEffect();
     initGamingCursor();
+    initRippleEffect();
+    initParallaxEffect();
+    initAchievementSystem();
+    initSmoothScroll();
+    initGlitchEffect();
+    initCounterAnimation();
+    initTooltips();
+    initKonamiCode();
 });
 
 // ========================================
@@ -316,6 +324,294 @@ document.addEventListener('keydown', (e) => {
         konamiIndex = 0;
     }
 });
+
+// ========================================
+// RIPPLE EFFECT ON BUTTONS
+// ========================================
+function initRippleEffect() {
+    document.querySelectorAll('.ripple-button, .btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple-animation');
+
+            this.appendChild(ripple);
+
+            setTimeout(() => ripple.remove(), 600);
+        });
+    });
+
+    // Agregar estilos para ripple
+    if (!document.querySelector('#ripple-styles')) {
+        const style = document.createElement('style');
+        style.id = 'ripple-styles';
+        style.textContent = `
+            .ripple-animation {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.5);
+                transform: scale(0);
+                animation: ripple-grow 0.6s ease-out;
+                pointer-events: none;
+            }
+            @keyframes ripple-grow {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// ========================================
+// PARALLAX SCROLL EFFECT
+// ========================================
+function initParallaxEffect() {
+    // Excluir game-cards del parallax para evitar movimiento excesivo
+    const parallaxElements = document.querySelectorAll('.parallax-layer, .feature-card');
+
+    window.addEventListener('scroll', () => {
+        const scrolled = window.pageYOffset;
+
+        parallaxElements.forEach((element, index) => {
+            // Reducido significativamente el speed para movimiento más sutil
+            const speed = (index + 1) * 0.015; // Era 0.05, ahora 0.015
+            const yPos = -(scrolled * speed);
+            element.style.transform = `translateY(${yPos}px)`;
+        });
+    });
+}
+
+// ========================================
+// GLITCH EFFECT ON HOVER
+// ========================================
+function initGlitchEffect() {
+    document.querySelectorAll('h1, h2, .hero-title').forEach(element => {
+        element.setAttribute('data-text', element.textContent);
+
+        element.addEventListener('mouseenter', function() {
+            this.classList.add('glitch-effect');
+        });
+
+        element.addEventListener('mouseleave', function() {
+            this.classList.remove('glitch-effect');
+        });
+    });
+}
+
+// ========================================
+// COUNTER ANIMATION FOR STATS
+// ========================================
+function initCounterAnimation() {
+    const counters = document.querySelectorAll('.stat-number');
+    const speed = 200;
+
+    const animateCounter = (counter) => {
+        const target = parseInt(counter.textContent.replace(/[^0-9]/g, ''));
+        const increment = target / speed;
+        let current = 0;
+
+        const updateCounter = () => {
+            current += increment;
+            if (current < target) {
+                counter.textContent = Math.ceil(current) + '+';
+                requestAnimationFrame(updateCounter);
+            } else {
+                counter.textContent = target + '+';
+            }
+        };
+
+        updateCounter();
+    };
+
+    // Intersection Observer para animar cuando sea visible
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+                entry.target.classList.add('counted');
+                animateCounter(entry.target);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+}
+
+// ========================================
+// TOOLTIPS GAMING STYLE
+// ========================================
+function initTooltips() {
+    document.querySelectorAll('[data-tooltip]').forEach(element => {
+        const tooltip = document.createElement('div');
+        tooltip.className = 'gaming-tooltip';
+        tooltip.textContent = element.getAttribute('data-tooltip');
+        tooltip.style.cssText = `
+            position: absolute;
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 10000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(220, 38, 38, 0.5);
+        `;
+
+        document.body.appendChild(tooltip);
+
+        element.addEventListener('mouseenter', function(e) {
+            const rect = this.getBoundingClientRect();
+            tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + 'px';
+            tooltip.style.top = rect.top - tooltip.offsetHeight - 10 + 'px';
+            tooltip.style.opacity = '1';
+        });
+
+        element.addEventListener('mouseleave', function() {
+            tooltip.style.opacity = '0';
+        });
+    });
+}
+
+// ========================================
+// SMOOTH SCROLL ENHANCEMENT
+// ========================================
+function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                e.preventDefault();
+                targetElement.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+
+                // Agregar efecto de highlight al elemento destino
+                targetElement.classList.add('highlight-flash');
+                setTimeout(() => {
+                    targetElement.classList.remove('highlight-flash');
+                }, 2000);
+            }
+        });
+    });
+
+    // Estilo para highlight flash
+    if (!document.querySelector('#highlight-flash-style')) {
+        const style = document.createElement('style');
+        style.id = 'highlight-flash-style';
+        style.textContent = `
+            .highlight-flash {
+                animation: flash-highlight 2s ease-out;
+            }
+            @keyframes flash-highlight {
+                0%, 100% { box-shadow: none; }
+                50% { box-shadow: 0 0 30px rgba(220, 38, 38, 0.6); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+}
+
+// ========================================
+// FLOATING ACTION BUTTON (FAB)
+// ========================================
+function createFloatingActionButton() {
+    const fab = document.createElement('button');
+    fab.className = 'gaming-fab';
+    fab.innerHTML = '⬆️';
+    fab.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #dc2626, #991b1b);
+        color: white;
+        border: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(220, 38, 38, 0.5);
+        transition: all 0.3s;
+        z-index: 9999;
+        opacity: 0;
+        transform: scale(0);
+    `;
+
+    fab.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    fab.addEventListener('mouseenter', () => {
+        fab.style.transform = 'scale(1.1) rotate(360deg)';
+    });
+
+    fab.addEventListener('mouseleave', () => {
+        fab.style.transform = 'scale(1) rotate(0deg)';
+    });
+
+    document.body.appendChild(fab);
+
+    // Mostrar/ocultar según scroll
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            fab.style.opacity = '1';
+            fab.style.transform = 'scale(1)';
+        } else {
+            fab.style.opacity = '0';
+            fab.style.transform = 'scale(0)';
+        }
+    });
+}
+
+// Inicializar FAB
+setTimeout(createFloatingActionButton, 1000);
+
+// ========================================
+// EASTER EGG - KONAMI CODE
+// ========================================
+function initKonamiCode() {
+    const konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+    let konamiIndex = 0;
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === konamiCode[konamiIndex]) {
+            konamiIndex++;
+            if (konamiIndex === konamiCode.length) {
+                activateRetroMode();
+                showAchievement('🎮 Código Konami Activado!', 'Modo retro gaming desbloqueado');
+                konamiIndex = 0;
+            }
+        } else {
+            konamiIndex = 0;
+        }
+    });
+}
+
+function activateRetroMode() {
+    document.body.style.filter = 'hue-rotate(180deg) saturate(1.5)';
+    document.body.style.fontFamily = '"Courier New", monospace';
+
+    setTimeout(() => {
+        document.body.style.filter = '';
+        document.body.style.fontFamily = '';
+    }, 10000);
+}
 
 // ========================================
 // PERFORMANCE OPTIMIZATION
